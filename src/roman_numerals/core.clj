@@ -9,6 +9,7 @@
     (= arabic 10) "X"
     (= arabic 40) "XL"
     (= arabic 50) "L"
+    (> arabic 50) (str "L" (arabic-to-roman (- arabic 50)))
     (> arabic 10) (str "X" (arabic-to-roman (- arabic 10)))
     (> arabic 5) (str "V" (arabic-to-roman (- arabic 5)))
     :else (str "I" (arabic-to-roman (- arabic 1)))))

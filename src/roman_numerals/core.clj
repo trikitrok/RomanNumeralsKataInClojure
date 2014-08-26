@@ -1,15 +1,19 @@
 (ns roman-numerals.core)
 
-(defn arabic-to-roman [arabic]
-  (cond 
+(defn- convert-until-10 [arabic]
+  (cond
     (= arabic 1) "I"
     (= arabic 4) "IV"
     (= arabic 5) "V"
     (= arabic 9) "IX"
     (= arabic 10) "X"
+    (> arabic 5) (str "V" (convert-until-10 (- arabic 5)))
+    :else (str "I" (convert-until-10 (- arabic 1)))))
+
+(defn arabic-to-roman [arabic]
+  (cond 
+    (<= arabic 10) (convert-until-10 arabic)
     (= arabic 40) "XL"
     (= arabic 50) "L"
     (> arabic 50) (str "L" (arabic-to-roman (- arabic 50)))
-    (> arabic 10) (str "X" (arabic-to-roman (- arabic 10)))
-    (> arabic 5) (str "V" (arabic-to-roman (- arabic 5)))
-    :else (str "I" (arabic-to-roman (- arabic 1)))))
+    :else (str "X" (arabic-to-roman (- arabic 10)))))

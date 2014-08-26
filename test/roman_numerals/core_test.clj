@@ -38,4 +38,15 @@
         (arabic-to-roman 899) => "DCCCXCIX"
         (arabic-to-roman 900) => "CM"
         (arabic-to-roman 999) => "CMXCIX"
-        (arabic-to-roman 1000) => "M"))
+        (arabic-to-roman 1000) => "M")
+  (fact "it converts numbers from 1001 to 3999"
+        (arabic-to-roman 1100) => "MC"
+        (arabic-to-roman 1200) => "MCC"
+        (arabic-to-roman 2250) => "MMCCL"
+        (arabic-to-roman 3400) => "MMMCD"
+        (arabic-to-roman 3499) => "MMMCDXCIX"
+        (arabic-to-roman 3500) => "MMMD"
+        (arabic-to-roman 3899) => "MMMDCCCXCIX"
+        (arabic-to-roman 3900) => "MMMCM"
+        (arabic-to-roman 3999) => "MMMCMXCIX"
+        (arabic-to-roman 3000) => "MMM"))

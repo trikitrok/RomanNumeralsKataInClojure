@@ -3,7 +3,8 @@
 (def ^:private roman-symbols
   {:until-10 "IVX"
    :until-100 "XLC"
-   :until-1000 "CDM"})
+   :until-1000 "CDM"
+   :until-3999 "M  "})
 
 (defn- convert [arabic in-range]
   (let [[from medium to] (roman-symbols in-range)]
@@ -20,5 +21,7 @@
     (<= arabic 10) (convert arabic :until-10)
     (<= arabic 100) (str (convert (quot arabic 10) :until-100) 
                          (arabic-to-roman (mod arabic 10)))
-    :else (str (convert (quot arabic 100) :until-1000)
-               (arabic-to-roman (mod arabic 100)))))
+    (<= arabic 1000) (str (convert (quot arabic 100) :until-1000)
+                          (arabic-to-roman (mod arabic 100)))
+    :else (str (convert (quot arabic 1000) :until-3999)
+               (arabic-to-roman (mod arabic 1000)))))

@@ -12,4 +12,10 @@
         (arabic-to-roman 5) => "V"
         (arabic-to-roman 8) => "VIII"
         (arabic-to-roman 9) => "IX"
-        (arabic-to-roman 10) => "X"))
+        (arabic-to-roman 10) => "X")
+  (fact "it converts numbers from 10 to 19"
+        (arabic-to-roman 13) => "XIII"
+        (arabic-to-roman 14) => "XIV"
+        (arabic-to-roman 15) => "XV"
+        (arabic-to-roman 18) => "XVIII"
+        (arabic-to-roman 19) => "XIX"))

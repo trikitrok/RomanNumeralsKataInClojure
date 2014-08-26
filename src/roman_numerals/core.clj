@@ -23,5 +23,10 @@
                          (arabic-to-roman (mod arabic 10)))
     (<= arabic 1000) (str (convert (quot arabic 100) :until-1000)
                           (arabic-to-roman (mod arabic 100)))
-    :else (str (convert (quot arabic 1000) :until-3999)
-               (arabic-to-roman (mod arabic 1000)))))
+    (<= arabic 3999) (str (convert (quot arabic 1000) :until-3999)
+                          (arabic-to-roman (mod arabic 1000)))
+    :else (let [thousand-multiple (arabic-to-roman (quot arabic 1000))]
+            (str (apply str (repeat (count thousand-multiple) "-"))
+                 "\n"
+                 thousand-multiple
+                 (arabic-to-roman (mod arabic 1000))))))

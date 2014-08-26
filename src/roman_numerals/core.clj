@@ -1,13 +1,39 @@
 (ns roman-numerals.core)
 
-(defn- convert-until-10 [arabic]
+(defn- convert [from medium to from-symbol medium-symbol to-symbol arabic]
   (cond
     (= arabic 0) ""
-    (= arabic 4) "IV"
-    (= arabic 10) "X"
-    (>= arabic 9) (str "IX" (convert-until-10 (- arabic 9)))
-    (>= arabic 5) (str "V" (convert-until-10 (- arabic 5)))
-    :else (str "I" (convert-until-10 (- arabic 1)))))
+    (= arabic (- medium from)) (str from-symbol 
+                                      medium-symbol)
+    (= arabic to) to-symbol
+    (>= arabic (- to from)) (str from-symbol 
+                                 to-symbol 
+                                 (convert from 
+                                          medium 
+                                          to 
+                                          from-symbol 
+                                          medium-symbol 
+                                          to-symbol 
+                                          (- arabic (- to from))))
+    (>= arabic medium) (str medium-symbol 
+                            (convert from 
+                                     medium 
+                                     to 
+                                     from-symbol 
+                                     medium-symbol 
+                                     to-symbol 
+                                     (- arabic medium)))
+    :else (str from-symbol 
+               (convert from 
+                        medium 
+                        to 
+                        from-symbol 
+                        medium-symbol 
+                        to-symbol 
+                        (- arabic from)))))
+
+(def ^:private convert-until-10
+  (partial convert 1 5 10 "I" "V" "X"))
 
 (defn arabic-to-roman [arabic]
   (cond 

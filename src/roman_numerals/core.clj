@@ -16,6 +16,8 @@
       (>= arabic 5) (str medium (convert (- arabic 5) in-range))
       :else (str from (convert (- arabic 1) in-range)))))
 
+(declare huge-roman-numeral)
+
 (defn arabic-to-roman [arabic]
   (cond
     (<= arabic 10) (convert arabic :until-10)
@@ -25,8 +27,11 @@
                           (arabic-to-roman (mod arabic 100)))
     (<= arabic 3999) (str (convert (quot arabic 1000) :until-3999)
                           (arabic-to-roman (mod arabic 1000)))
-    :else (let [thousand-multiple (arabic-to-roman (quot arabic 1000))]
+    :else (huge-roman-numeral arabic)))
+
+(defn- huge-roman-numeral [arabic]
+  (let [thousand-multiple (arabic-to-roman (quot arabic 1000))]
             (str (apply str (repeat (count thousand-multiple) "-"))
                  "\n"
                  thousand-multiple
-                 (arabic-to-roman (mod arabic 1000))))))
+                 (arabic-to-roman (mod arabic 1000)))))

@@ -2,6 +2,8 @@
 
 [Roman numerals kata](http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals)
 
+[Roman numerals info](http://www.novaroma.org/via_romana/numbers.html)
+
 The project uses [Midje](https://github.com/marick/Midje/).
 
 ## How to run the tests

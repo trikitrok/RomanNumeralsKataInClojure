@@ -1,43 +1,26 @@
 (ns roman-numerals.core)
 
-(defn- convert [from medium to from-symbol medium-symbol to-symbol arabic]
+(def ^:private roman-symbols
+  {0 ""
+   1 "I"
+   5 "V"
+   10 "X"})
+
+(defn- convert [from medium to arabic]
   (cond
     (= arabic 0) ""
-    (= arabic (- medium from)) (str from-symbol 
-                                      medium-symbol)
-    (= arabic to) to-symbol
-    (>= arabic (- to from)) (str from-symbol 
-                                 to-symbol 
-                                 (convert from 
-                                          medium 
-                                          to 
-                                          from-symbol 
-                                          medium-symbol 
-                                          to-symbol 
-                                          (- arabic (- to from))))
-    (>= arabic medium) (str medium-symbol 
-                            (convert from 
-                                     medium 
-                                     to 
-                                     from-symbol 
-                                     medium-symbol 
-                                     to-symbol 
-                                     (- arabic medium)))
-    :else (str from-symbol 
-               (convert from 
-                        medium 
-                        to 
-                        from-symbol 
-                        medium-symbol 
-                        to-symbol 
-                        (- arabic from)))))
-
-(def ^:private convert-until-10
-  (partial convert 1 5 10 "I" "V" "X"))
+    (= arabic to) (roman-symbols to)
+    (= arabic (- medium from)) (str (roman-symbols from) (roman-symbols medium))
+    (>= arabic (- to from)) (str (roman-symbols from) (roman-symbols to) 
+                                 (convert from medium to (- arabic (- to from))))
+    (>= arabic medium) (str (roman-symbols medium) 
+                            (convert from medium to (- arabic medium)))
+    :else (str (roman-symbols from)
+               (convert from medium to (- arabic from)))))
 
 (defn arabic-to-roman [arabic]
   (cond 
-    (<= arabic 10) (convert-until-10 arabic)
+    (<= arabic 10) (convert 1 5 10 arabic)
     (= arabic 40) "XL"
     (= arabic 50) "L"
     (= arabic 90) "XC"

@@ -1,4 +1,6 @@
 (ns roman-numerals.core)
 
 (defn arabic-to-roman [arabic]
-  "I")
+  (if (= arabic 1)
+    "I"
+    "II"))

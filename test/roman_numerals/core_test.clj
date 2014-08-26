@@ -4,5 +4,6 @@
 
 (facts 
   "about arabic to roman numerals conversion"
-  (fact "1 converts to I"
-        (arabic-to-roman 1) => "I"))
+  (fact "it converts numbers until 10"
+        (arabic-to-roman 1) => "I"
+        (arabic-to-roman 2) => "II"))

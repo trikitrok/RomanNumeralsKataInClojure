@@ -19,5 +19,6 @@
         (arabic-to-roman 25) => "XXV"
         (arabic-to-roman 28) => "XXVIII"
         (arabic-to-roman 39) => "XXXIX")
-  (fact "it converts 40"
-        (arabic-to-roman 40) => "XL"))
+  (fact "it converts numbers from 40 to 89"
+        (arabic-to-roman 40) => "XL"
+        (arabic-to-roman 50) => "L"))

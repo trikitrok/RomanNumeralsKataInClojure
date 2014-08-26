@@ -9,7 +9,7 @@
 (defn- convert [from medium to arabic]
   (cond
     (= arabic 0) ""
-    (= arabic to) (roman-symbols to)
+    (= arabic to) (str (roman-symbols to) (convert from medium to (- arabic to)))
     (= arabic (- medium from)) (str (roman-symbols from) (roman-symbols medium))
     (>= arabic (- to from)) (str (roman-symbols from) (roman-symbols to) 
                                  (convert from medium to (- arabic (- to from))))

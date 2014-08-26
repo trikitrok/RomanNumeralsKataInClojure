@@ -1,6 +1,7 @@
 (ns roman-numerals.core)
 
 (defn arabic-to-roman [arabic]
-  (if (= arabic 1)
-    "I"
-    (str "I" (arabic-to-roman (- arabic 1)))))
+  (cond 
+    (= arabic 1) "I"
+    (= arabic 4) "IV"
+    :else (str "I" (arabic-to-roman (- arabic 1)))))

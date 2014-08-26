@@ -1,5 +1,18 @@
 (ns roman-numerals.core)
 
+(declare huge-roman-numeral convert roman-symbols)
+
+(defn arabic-to-roman [arabic]
+  (cond
+    (<= arabic 10) (convert arabic :until-10)
+    (<= arabic 100) (str (convert (quot arabic 10) :until-100) 
+                         (arabic-to-roman (mod arabic 10)))
+    (<= arabic 1000) (str (convert (quot arabic 100) :until-1000)
+                          (arabic-to-roman (mod arabic 100)))
+    (<= arabic 3999) (str (convert (quot arabic 1000) :until-3999)
+                          (arabic-to-roman (mod arabic 1000)))
+    :else (huge-roman-numeral arabic)))
+
 (def ^:private roman-symbols
   {:until-10 "IVX"
    :until-100 "XLC"
@@ -15,19 +28,6 @@
       (>= arabic 9) (str from to (convert (- arabic 9) in-range))
       (>= arabic 5) (str medium (convert (- arabic 5) in-range))
       :else (str from (convert (- arabic 1) in-range)))))
-
-(declare huge-roman-numeral)
-
-(defn arabic-to-roman [arabic]
-  (cond
-    (<= arabic 10) (convert arabic :until-10)
-    (<= arabic 100) (str (convert (quot arabic 10) :until-100) 
-                         (arabic-to-roman (mod arabic 10)))
-    (<= arabic 1000) (str (convert (quot arabic 100) :until-1000)
-                          (arabic-to-roman (mod arabic 100)))
-    (<= arabic 3999) (str (convert (quot arabic 1000) :until-3999)
-                          (arabic-to-roman (mod arabic 1000)))
-    :else (huge-roman-numeral arabic)))
 
 (defn- thousand-bar [size]
   (str (apply str (repeat (count size) "-")) "\n"))

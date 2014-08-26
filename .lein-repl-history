@@ -21,3 +21,8 @@
 (times-thousand 3999005)
 (use 'roman-numerals.core :reload)
 (times-thousand 3999005)
+(use 'roman-numerals.core :reload)
+(times-thousand 3999005)
+(println (arabic-to-roman 3999150))
+(println (arabic-to-roman 4000150))
+(println (arabic-to-roman 3999000150))

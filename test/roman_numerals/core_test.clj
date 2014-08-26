@@ -11,4 +11,5 @@
         (arabic-to-roman 4) => "IV"
         (arabic-to-roman 5) => "V"
         (arabic-to-roman 8) => "VIII"
-        (arabic-to-roman 9) => "IX"))
+        (arabic-to-roman 9) => "IX"
+        (arabic-to-roman 10) => "X"))

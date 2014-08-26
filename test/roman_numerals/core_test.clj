@@ -18,4 +18,6 @@
         (arabic-to-roman 14) => "XIV"
         (arabic-to-roman 25) => "XXV"
         (arabic-to-roman 28) => "XXVIII"
-        (arabic-to-roman 39) => "XXXIX"))
+        (arabic-to-roman 39) => "XXXIX")
+  (fact "it converts 40"
+        (arabic-to-roman 40) => "XL"))

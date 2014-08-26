@@ -2,12 +2,11 @@
 
 (defn- convert-until-10 [arabic]
   (cond
-    (= arabic 1) "I"
+    (= arabic 0) ""
     (= arabic 4) "IV"
-    (= arabic 5) "V"
-    (= arabic 9) "IX"
     (= arabic 10) "X"
-    (> arabic 5) (str "V" (convert-until-10 (- arabic 5)))
+    (>= arabic 9) (str "IX" (convert-until-10 (- arabic 9)))
+    (>= arabic 5) (str "V" (convert-until-10 (- arabic 5)))
     :else (str "I" (convert-until-10 (- arabic 1)))))
 
 (defn arabic-to-roman [arabic]

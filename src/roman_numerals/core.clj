@@ -3,4 +3,4 @@
 (defn arabic-to-roman [arabic]
   (if (= arabic 1)
     "I"
-    "II"))
+    (str "I" (arabic-to-roman (- arabic 1)))))

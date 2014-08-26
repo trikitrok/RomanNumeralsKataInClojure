@@ -17,5 +17,6 @@
     (= arabic 50) "L"
     (= arabic 90) "XC"
     (= arabic 100) "C"
+    (> arabic 90) (str "XC" (arabic-to-roman (- arabic 90)))
     (> arabic 50) (str "L" (arabic-to-roman (- arabic 50)))
     :else (str "X" (arabic-to-roman (- arabic 10)))))

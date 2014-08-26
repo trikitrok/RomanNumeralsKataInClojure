@@ -53,4 +53,6 @@
   (fact "it converts numbers over 3999"
         (arabic-to-roman 4000) => "--\nIV"
         (arabic-to-roman 4001) => "--\nIVI"
-        (arabic-to-roman 3999005) => "---------\nMMMCMXCIXV"))
+        (arabic-to-roman 3999005) => "---------\nMMMCMXCIXV"
+        (arabic-to-roman 4000000) => "--\n--\nIV"
+        (arabic-to-roman 4000025) => "--\n--\nIVXXV"))

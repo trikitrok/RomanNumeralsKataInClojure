@@ -29,9 +29,24 @@
                           (arabic-to-roman (mod arabic 1000)))
     :else (huge-roman-numeral arabic)))
 
+(defn- thousand-bar [size]
+  (str (apply str (repeat (count size) "-")) "\n"))
+
+(defn- times-thousand [arabic]
+  (loop [n arabic times 0]
+    (if (<= n 3999)
+      times
+      (recur (quot n 1000) (+ times 1)))))
+
+(defn- pow [m n]
+  (reduce * (repeat n m)))
+
 (defn- huge-roman-numeral [arabic]
-  (let [thousand-multiple (arabic-to-roman (quot arabic 1000))]
-            (str (apply str (repeat (count thousand-multiple) "-"))
-                 "\n"
-                 thousand-multiple
-                 (arabic-to-roman (mod arabic 1000)))))
+  (let [times (times-thousand arabic)
+        div (pow 1000 times)
+        thousand-multiple (arabic-to-roman (quot arabic div))
+        horizontal-bar (thousand-bar thousand-multiple)]
+    (str 
+      (apply str (repeat times horizontal-bar))
+      thousand-multiple
+      (arabic-to-roman (mod arabic div)))))
